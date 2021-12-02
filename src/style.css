@@ -1,0 +1,19 @@
+body > #root > div {
+    height: 100vh;
+    background-color: #0c1d2a;
+}
+
+#sidebar-bg{
+    background-color: #102636;
+}
+
+.card-bg{
+    background-color: #0d2a3b;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
