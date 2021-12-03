@@ -21,7 +21,7 @@ function Badges() {
             {
                 data.map((data, index) => {
                     return(
-                        <span className="badge badge-pill bg-secondary mx-1">{data}</span>
+                        <span key={index} className="badge badge-pill bg-secondary mx-1">{data}</span>
                     );
                 })
             }

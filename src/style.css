@@ -1,5 +1,5 @@
 body > #root > div {
-    height: 100vh;
+    height: auto;
     background-color: #0c1d2a;
 }
 
@@ -9,6 +9,11 @@ body > #root > div {
 
 .card-bg{
     background-color: #0d2a3b;
+}
+
+.item-bg{
+    background-color: #0a2531;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 hr {

@@ -1,14 +1,12 @@
 import React, {useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {LoginUser} from "../Services/UserService";
 import Message from "../Alerts/Message";
-import {Loading} from "../Feed/Loading";
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
     const [loggedIn, setIsLoggedIn] = useState(false);
     let navigate = useNavigate();
 
@@ -19,11 +17,9 @@ const Login = () => {
             localStorage.clear();
             localStorage.setItem('accessToken', JSON.stringify(response['accessToken']));
             localStorage.setItem('refreshToken', JSON.stringify(response['refreshToken']));
-            setIsLoading(false);
             setIsLoggedIn(true);
             window.location.reload();
         }).catch(error => {
-            setIsLoading(false);
             setMessage("Could not login.");
         });
     }

@@ -1,26 +1,41 @@
 import Card from "./Card";
 import {useEffect, useState} from "react";
+import {Loading} from "../Loading";
 
 let Parser = require('rss-parser');
 let parser = new Parser();
-const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
+
+const RSS = "https://rss.aftonbladet.se/rss2/small/pages/sections/senastenytt/";
 
 function Feed() {
     const [feeds, setFeeds] = useState( []);
-    useEffect(async () =>{
-        const url = CORS_PROXY + 'https://rss.aftonbladet.se/rss2/small/pages/sections/senastenytt/';
-        const feed = await parser.parseURL(url);
-        setFeeds(oldArray => [...oldArray, feed]);
+    const [loaded, setLoaded] = useState( false);
+
+    useEffect(() => {
+        fetchRSS(RSS).then(response =>{
+           setFeeds(prev => [...prev, response]);
+           setLoaded(true);
+        }).catch(error =>{
+            console.log(error);
+        });
     }, [])
+
+    const fetchRSS = async (RSS) => {
+        return await parser.parseURL(RSS);
+    }
+
+    const renderItems = () =>{
+        return feeds.map((data, index) => {
+            return(
+                <Card key={index} data={data} index={index}/>
+            );
+        })
+    }
 
     return (
         <div>
             {
-                feeds.map((data, index) => {
-                    return(
-                        <Card data={data} index={index}/>
-                    );
-                })
+               loaded ? renderItems() : <Loading/>
             }
         </div>
     );

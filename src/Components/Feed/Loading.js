@@ -5,7 +5,7 @@ export const Loading = () =>{
     let color = useState("#00ccfc");
 
     return(
-        <div className="loading">
+        <div className="align-content-center">
             <MoonLoader  color={color} loading={true} size={100}/>
         </div>
     );
