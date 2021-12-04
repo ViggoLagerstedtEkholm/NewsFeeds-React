@@ -1,3 +1,5 @@
+import Item from "./Item";
+
 function Card(props) {
     const {
         copyright,
@@ -14,25 +16,7 @@ function Card(props) {
 
     const renderItems = () =>{
         return items.map((data, index) => {
-            const {content, enclosure, guid, isoDate, link, pubDate, title} = data;
-            const {url} = enclosure;
-
-            return(
-                <div key={index} className="item-bg rounded-1 p-2 text-break my-3">
-                    <img className="card-img" alt="URL" src={url} width="100%" height="100%"/>
-
-                    <h4>{title}</h4>
-                    <p>{content}</p>
-
-                    <small><a href={link}>{link}</a></small>
-                    <br/>
-                    <small><b>ISO: {guid}</b></small>
-                    <br/>
-                    <small><b>ISO: {isoDate}</b></small>
-                    <br/>
-                    <small><b>{pubDate}</b></small>
-                </div>
-            )
+           return <Item key={index} data={data}/>
         })
     }
 
@@ -48,8 +32,8 @@ function Card(props) {
 
             <p>{renderItems()}</p>
 
-            <small>{lastBuildDate}</small>
-            <small>{copyright}</small>
+            <small>{lastBuildDate?? ""}</small>
+            <small>{copyright ?? ""}</small>
         </div>
     );
 }
