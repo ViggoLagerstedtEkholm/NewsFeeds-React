@@ -1,11 +1,8 @@
 import {HashRouter, Route, Routes} from 'react-router-dom';
 import {useEffect, useMemo, useState} from "react";
-import {ResetPassword} from "./Components/Authentication/ResetPassword";
 import {Loading} from "./Components/Feed/Loading";
 import {UserContext} from "./Components/Context/UserContext";
 import jwt from 'jwt-decode';
-import Profile from "./Components/Profile/Profile";
-import Email from "./Components/Authentication/Email";
 import Main from "./Components/Feed/Feed/Main";
 import Login from "./Components/Authentication/Login";
 import Register from "./Components/Authentication/Register";
@@ -39,10 +36,6 @@ function App() {
                         <Route path="/" element={<Main/>} />
                         <Route path="/login" element={<Login/>} />
                         <Route path="/register" element={<Register redirectLogin={true}/>} />
-                        <Route path="/profile" element={<Profile/>} />
-                        <Route path="/add" element={<Register redirectLogin={false}/>} />
-                        <Route path="/reset/password/:TOKEN" element={<ResetPassword/>} />
-                        <Route path="/reset/password/mail" element={<Email/>} />
                     </Routes>
                 </div>
                 </HashRouter>

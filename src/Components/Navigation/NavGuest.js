@@ -7,10 +7,6 @@ function NavGuest(){
 
             <ul className="navbar-nav text-white">
                 <li className="nav-item">
-                    <Link className="nav-link text-white" to="/profile">Profile</Link>
-                </li>
-
-                <li className="nav-item">
                     <Link className="nav-link text-white" to="/login">Login</Link>
                 </li>
 
