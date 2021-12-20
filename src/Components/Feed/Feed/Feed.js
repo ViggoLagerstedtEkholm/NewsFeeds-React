@@ -1,6 +1,7 @@
 import Card from "./Card";
 import {useEffect, useState} from "react";
 import {Loading} from "../Loading";
+import {GetAllRSS} from "../../Services/FeedsService";
 
 let Parser = require('rss-parser');
 let parser = new Parser();
@@ -9,11 +10,17 @@ function Feed() {
     const [feeds, setFeeds] = useState( []);
     const [loaded, setLoaded] = useState( false);
 
-    useEffect(() => {
-        fetchRSS(["https://rss.aftonbladet.se/rss2/small/pages/sections/senastenytt/", "https://www.dn.se/rss/"]).then(response =>{
-           setFeeds(response);
-           setLoaded(true);
-        }).catch(error =>{
+    useEffect(async () => {
+        async function fetchData()
+        {
+             return await GetAllRSS();
+        }
+        const feedConfig = await fetchData();
+
+        fetchRSS(feedConfig).then(response => {
+            setFeeds(response);
+            setLoaded(true);
+        }).catch(error => {
             console.log(error);
         });
     }, [])
@@ -21,10 +28,9 @@ function Feed() {
     const fetchRSS = async (RSS) => {
         let data = [];
         for(let i = 0 ; i < RSS.length; i++){
-            data.push(await parser.parseURL(RSS[i]));
+            const {displayLimit, id, url} = RSS[i];
+            data.push({data : await parser.parseURL(url), limit : displayLimit, id: id});
         }
-        console.log(data);
-
         return data;
     }
 

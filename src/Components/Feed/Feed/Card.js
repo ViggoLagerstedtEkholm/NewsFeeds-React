@@ -10,13 +10,17 @@ function Card(props) {
         lastBuildDate,
         link,
         title
-    } = props.data;
+    } = props.data.data;
+
+    const {limit} = props.data;
 
     const {index} = props;
 
     const renderItems = () =>{
         return items.map((data, index) => {
-           return <Item key={index} data={data}/>
+            if(index < limit){
+                return <Item key={index} data={data}/>
+            }
         })
     }
 
@@ -30,7 +34,7 @@ function Card(props) {
 
             <hr/>
 
-            <p>{renderItems()}</p>
+            {renderItems()}
 
             <small>{lastBuildDate?? ""}</small>
             <small>{copyright ?? ""}</small>

@@ -34,7 +34,7 @@ const Login = () => {
             {message ? <Message msg={message}/> : null}
 
             <div className="form-group mt-4">
-                <label htmlFor="exampleInputEmail1">Email address</label>
+                <label htmlFor="exampleInputEmail1">Username</label>
                 <input type="username"
                        className="form-control"
                        id="exampleInputUsername"
